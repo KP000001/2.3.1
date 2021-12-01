@@ -89,11 +89,11 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return getAge() == user.getAge() && getId().equals(user.getId()) && getName().equals(user.getName()) && getLastName().equals(user.getLastName());
+        return getAge() == user.getAge() && getName().equals(user.getName()) && getLastName().equals(user.getLastName());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getName(), getLastName(), getAge());
+        return Objects.hash(getName(), getLastName(), getAge());
     }
 }
