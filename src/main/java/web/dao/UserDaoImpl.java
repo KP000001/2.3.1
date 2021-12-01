@@ -1,7 +1,6 @@
 package web.dao;
 
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 import web.model.User;
 
 import javax.persistence.EntityManager;
@@ -11,8 +10,7 @@ import java.util.List;
 /**
  * @author Gaziz Bakyt
  */
-@Service
-@Component
+@Repository
 public class UserDaoImpl implements UserDao {
 
     @PersistenceContext
@@ -25,10 +23,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void updateUser(Long id, User user) {
-        User userToBeUpdated = getUserById(id);
-        userToBeUpdated.setName(user.getName());
-        userToBeUpdated.setLastName(user.getLastName());
-        userToBeUpdated.setAge(user.getAge());
+        manager.merge(user);
     }
 
     @Override

@@ -3,6 +3,7 @@ package web.model;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 /**
  * @author Gaziz Bakyt
@@ -81,5 +82,18 @@ public class User {
                 ", lastName='" + lastName + '\'' +
                 ", age=" + age +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return getAge() == user.getAge() && getId().equals(user.getId()) && getName().equals(user.getName()) && getLastName().equals(user.getLastName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getName(), getLastName(), getAge());
     }
 }
